@@ -1,12 +1,16 @@
 package com.example.kotlin_weather
 
+
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
+import android.view.View
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -49,6 +53,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
+
             }
         })
     }
@@ -87,27 +92,28 @@ class MainActivity : AppCompatActivity() {
         val call = service.getCurrentWeatherData(text, AppId)
 
         call.enqueue(object : Callback<WeatherResponse> {
+            @RequiresApi(Build.VERSION_CODES.M)
             override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
                 if (response.code() == 200) {
                     val weatherResponse = response.body()!!
 
 
 
-                    val stringBuilder = Html.fromHtml("<b>Country:</b> " +
-                            weatherResponse.sys!!.country +
-                            "<br>" +
-                            "<b>City:</b> " +
-                            weatherResponse.name +
-
-                            "<br>" +
-                            "<b>Temp:</b> " +
-                            (weatherResponse.main!!.temp - 273).toString().substring(0,3) + " ºC" +
-                            "<br>" +
+                    val stringBuilder = Html.fromHtml(
+//                            weatherResponse.sys!!.country +
+//                            "<br>" +
+//                            "<b>City:</b> " +
+//                            weatherResponse.name +
+//
+//                            "<br>" +
+//                            "<b>Temp:</b> " +
+//                            (weatherResponse.main!!.temp - 273).toString().substring(0,3) + "ºC" +
+//                            "<br>" +
                             "<b>Temp(Min):</b> " +
-                            (weatherResponse.main!!.temp_min - 273).toString().substring(0,3) + " ºC" +
+                            (weatherResponse.main!!.temp_min - 273).toString().substring(0,3) + "ºC" +
                             "<br>" +
                             "<b>Temp(Max):</b> " +
-                            (weatherResponse.main!!.temp_max - 273).toString().substring(0,3) + " ºC" +
+                            (weatherResponse.main!!.temp_max - 273).toString().substring(0,3) + "ºC" +
                             "<br>" +
                             "<b>Humidity:</b> " +
                             weatherResponse.main!!.humidity +
@@ -116,6 +122,62 @@ class MainActivity : AppCompatActivity() {
                             weatherResponse.main!!.pressure)
 
                     weatherData!!.text = stringBuilder
+
+                    tempView.text = ((weatherResponse.main!!.temp - 273).toString().substring(0,3) + "ºC")
+
+                    cityView.text = weatherResponse.name
+
+                    countryView.text = weatherResponse.sys!!.country
+
+                    humidityView.text = "Humidity: "+ weatherResponse.main!!.humidity .toString() + "%"
+
+                    tempmaxView.text = "Temp(Max): "+(weatherResponse.main!!.temp_max - 273).toString().substring(0,3) + "ºC"
+
+                    tempminView.text =  "Temp(Min): "+(weatherResponse.main!!.temp_min - 273).toString().substring(0,3) + "ºC"
+
+                    pressureView.text =   "Pressure: "+weatherResponse.main!!.pressure.toString() + "hPa"
+
+
+
+
+                    if(  ((weatherResponse.main!!.temp -273).toInt()) >= 24  ){
+
+                     view2.visibility = View.VISIBLE
+
+                     }
+
+                    else{
+
+                     view2.visibility = View.INVISIBLE
+                 }
+
+
+
+                 if ((weatherResponse.main!!.humidity).toInt() > 0 )  {
+
+                     emptyView.visibility = View.VISIBLE
+                     halfView.visibility = View.INVISIBLE
+                     fullView.visibility = View.INVISIBLE
+                 }
+
+                    if ((weatherResponse.main!!.humidity).toInt() > 33 )  {
+
+                        emptyView.visibility = View.INVISIBLE
+                        halfView.visibility = View.VISIBLE
+                        fullView.visibility = View.INVISIBLE
+                    }
+
+                    if ((weatherResponse.main!!.humidity).toInt() > 66 )  {
+
+                        emptyView.visibility = View.INVISIBLE
+                        halfView.visibility = View.INVISIBLE
+                        fullView.visibility = View.VISIBLE
+                    }
+
+
+
+
+
                 }
             }
 
@@ -143,3 +205,5 @@ class MainActivity : AppCompatActivity() {
 
 
 }
+
+

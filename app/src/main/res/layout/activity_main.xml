@@ -11,25 +11,60 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#0009E3FF"
-            android:foreground="@drawable/weather"
+            android:foreground="@drawable/gradient"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+    <View
+            android:id="@+id/view2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0009E3FF"
+            android:foreground="@drawable/gradient_hot"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+             />
 
     <TextView
             android:id="@+id/textView"
             android:layout_width="800px"
-            android:layout_height="600px"
-            android:background="@drawable/rounded_button_grey"
+            android:layout_height="400px"
+            android:background="@drawable/edit_text_border"
             android:clickable="true"
+            android:gravity="center"
+            android:textColor="#000000"
             android:textSize="20sp"
 
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text"
-            app:layout_constraintVertical_bias="0.342" />
+            app:layout_constraintVertical_bias="0.5" />
+    <View
+            android:id="@+id/view6"
+            android:layout_width="800px"
+            android:layout_height="400px"
+            android:background="@drawable/edit_text_border"
+
+
+
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text"
+            app:layout_constraintVertical_bias="0.5"
+            />
+
+
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -40,7 +75,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+                />
 
     <EditText
             android:id="@+id/text"
@@ -52,11 +88,13 @@
             android:layout_marginEnd="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginBottom="850dp"
-            android:background="@drawable/rounded_button_grey"
+
             android:textSize="20sp"
             android:ems="10"
+            android:background="@drawable/edit_text_border"
+            android:windowSoftInputMode="adjustNothing"
             android:inputType="textPersonName"
-            android:text="Enter City"
+            android:hint=" Enter City"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.484"
@@ -72,8 +110,228 @@
             android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp"
             android:text="Details"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@id/textView" />
+
+    <TextView
+            android:id="@+id/tempView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
+            android:textSize="60dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.15" />
+
+    <TextView
+            android:id="@+id/cityView"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+
+
+            android:text=""
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="30sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.27" />
+    <TextView
+            android:id="@+id/countryView"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+
+
+            android:text=""
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="20sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.34" />
+
+    <TextView
+            android:id="@+id/humidityView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:text="Humidity:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="20sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.49" />
+
+    <View
+            android:id="@+id/emptyView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:foreground="@drawable/drop_empty"
+
+            android:layout_marginLeft="10dp"
+            android:background="#0009E3FF"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+
+            app:layout_constraintEnd_toStartOf="@id/humidityView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.49" />
+
+
+    <View
+            android:id="@+id/halfView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:foreground="@drawable/drop_half"
+            android:layout_marginLeft="10dp"
+            android:background="#0009E3FF"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+
+            app:layout_constraintEnd_toStartOf="@id/humidityView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.49" />
+
+
+    <View
+            android:id="@+id/fullView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:foreground="@drawable/drop_full"
+            android:layout_marginLeft="10dp"
+            android:background="#0009E3FF"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+
+            app:layout_constraintEnd_toStartOf="@id/humidityView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.49" />
+
+
+    <TextView
+            android:id="@+id/tempmaxView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:text="Temp(Max):"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="20sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.54" />
+
+    <View
+            android:id="@+id/maxImgView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:foreground="@drawable/plus_icon"
+            android:layout_marginLeft="10dp"
+            android:background="#0009E3FF"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+
+            app:layout_constraintEnd_toStartOf="@id/tempmaxView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.54" />
+
+    <TextView
+            android:id="@+id/tempminView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:text="Temp(Min):"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="20sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.59" />
+
+
+    <View
+            android:id="@+id/minImgView"
+            android:layout_width="25dp"
+            android:layout_height="6dp"
+
+            android:foreground="@drawable/minus_icon"
+            android:layout_marginLeft="10dp"
+
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+
+            app:layout_constraintEnd_toStartOf="@id/tempminView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.59" />
+
+    <TextView
+            android:id="@+id/pressureView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:text="Pressure:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="20sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.64" />
+
+    <View
+            android:id="@+id/prImgView"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+
+            android:foreground="@drawable/pressure_icon"
+            android:layout_marginLeft="10dp"
+            android:background="#0009E3FF"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+
+            app:layout_constraintEnd_toStartOf="@id/pressureView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.64" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

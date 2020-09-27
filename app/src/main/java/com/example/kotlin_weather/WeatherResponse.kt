@@ -18,6 +18,7 @@ class WeatherResponse {
     var name: String? = null
 
 
+
 }
 
 
@@ -39,6 +40,8 @@ class Sys {
     @SerializedName("country")
     var country: String? = null
 }
+
+
 
 
 
